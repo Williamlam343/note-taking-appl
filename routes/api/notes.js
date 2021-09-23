@@ -3,14 +3,14 @@ const fs = require("fs/promises")
 
 // ** GET method Route
 router.get("/notes", async (req, res) => {
-    console.log(`${req.method} request for notes receieved`)
+
     await fs.readFile("./db/db.json", "utf8").then((data) => res.json(JSON.parse(data)))
 })
 
 // ** POST method ROUTE
 // API end point to get notes from db.json
 router.post("/notes", async (req, res) => {
-    console.log(`POST request recieved to add notes`)
+
     let newNotes = {
         ...req.body,
         id: Math.floor((1 + Math.random()) * 0x10000)
@@ -36,7 +36,7 @@ router.post("/notes", async (req, res) => {
 
 //**  DELETE method ROUTE
 router.delete("/notes/:id", async (req, res) => {
-    console.log(`${req.method} request recieved to delete notes`)
+
     // Check if there is anything in the response body
     const data = await fs.readFile("./db/db.json", "utf8")
     // parse data db.json
